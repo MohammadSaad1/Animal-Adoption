@@ -11,13 +11,13 @@ import {
 import AdoptPage from "./pages/AdoptPage";
 import AdminstrationPage from "./pages/AdminstrationPage";
 import "./App.css";
-import { AppBar } from "@mui/material";
+import AppBar from "./components/app-bar/AppBar";
 
 function App() {
   return (
     <div className="App">
-      <AppBar>
-        <Router>
+      <Router>
+        <AppBar>
           <Switch>
             <Route path="/" exact>
               <AdoptPage />
@@ -26,8 +26,8 @@ function App() {
               <AdminstrationPage />
             </Route>
           </Switch>
-        </Router>
-      </AppBar>
+        </AppBar>
+      </Router>
     </div>
   );
 }
