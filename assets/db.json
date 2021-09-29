@@ -1,0 +1,80 @@
+{
+    "animals": [
+        {
+            "id": 1,
+            "type": "Cat",
+            "meowsPerDay": 92,
+            "fluffynessLevel": 2,
+            "name": "Polo",
+            "sex": "Male",
+            "breed": "Birman",
+            "birth": "2019-08-08",
+            "photo": "https://jooinn.com/images/cat-66.jpg",
+            "status": "Unadopted",
+            "note": "Cuddles a lot"
+        },
+        {
+            "id": 2,
+            "type": "Cat",
+            "meowsPerDay": 53,
+            "fluffynessLevel": 4,
+            "name": "Maia",
+            "sex": "Female",
+            "breed": "Chartreux",
+            "birth": "2020-03-05",
+            "photo": "https://jooinn.com/images/cat-67.jpg",
+            "status": "Booked"
+        },
+        {
+            "id": 3,
+            "type": "Cat",
+            "meowsPerDay": 62,
+            "fluffynessLevel": 1,
+            "name": "Lola",
+            "sex": "Female",
+            "breed": "Asian",
+            "birth": "2018-05-02",
+            "photo": "https://jooinn.com/images/cat-68.jpg",
+            "status": "Adopted",
+            "note": "Very soft"
+        },
+        {
+            "id": 4,
+            "type": "Dog",
+            "tailLength": 20,
+            "goodBoy": true,
+            "name": "Jenna",
+            "sex": "Female",
+            "breed": "Dobberman",
+            "birth": "2019-03-02",
+            "photo": "https://jooinn.com/images/dog-67.jpg",
+            "status": "Booked",
+            "note": "Very quiet"
+        },
+        {
+            "id": 5,
+            "type": "Dog",
+            "tailLength": 10,
+            "goodBoy": false,
+            "name": "Pluto",
+            "sex": "Male",
+            "breed": "Malamute",
+            "birth": "2019-02-20",
+            "photo": "https://jooinn.com/images/dog-66.jpg",
+            "status": "Unadopted",
+            "note": "Barks a lot"
+        },
+        {
+            "id": 6,
+            "type": "Dog",
+            "tailLength": 12,
+            "goodBoy": true,
+            "name": "Bango",
+            "sex": "Male",
+            "breed": "Samoyed",
+            "photo": "https://jooinn.com/images/dog-65.jpg",
+            "birth": "2020-10-10",
+            "status": "Unadopted"
+        }
+    ]
+}
