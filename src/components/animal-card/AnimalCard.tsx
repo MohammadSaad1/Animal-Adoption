@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import { Animal } from "../../api/entities/Animal";
 
 interface AnimalCardProps {
@@ -22,7 +22,7 @@ class AnimalCard extends Component<AnimalCardProps, AnimalCardState> {
         <Grid container={true} item={true} direction="row">
           {/*  */}
           <Grid item={true} xs={4}>
-            <img />
+            <img src={animal.photo} />
             <Typography>title</Typography>
             <Typography>subtitle</Typography>
           </Grid>
@@ -31,16 +31,15 @@ class AnimalCard extends Component<AnimalCardProps, AnimalCardState> {
         {/*  */}
         <Grid item={true} xs={4} direction="row">
           {Object.keys(animal).map((attributeKey) => (
-            <Grid xs={6}>
-                <Typography>{attributeKey}</Typography>
-                <Typography>hello</Typography>
+            <Grid item={true} xs={6} alignContent="flex-start">
+              <Typography>{attributeKey}</Typography>
+              <Typography>{'sdas'}</Typography>
             </Grid>
           ))}
         </Grid>
 
-        <Grid container={true} item={true}></Grid>
+        <Button> Adopt me </Button>
       </Grid>
-
     );
   }
 }
