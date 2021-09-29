@@ -8,8 +8,8 @@ import {
   useHistory,
   useLocation,
 } from "react-router-dom";
-import AdoptPage from "./pages/AdoptPage";
-import AdminstrationPage from "./pages/AdminstrationPage";
+import AdoptPage from "./pages/adopt-page/AdoptPage";
+import AdminstrationPage from "./pages/adminstration-page/AdminstrationPage";
 import "./App.css";
 import AppBar from "./components/app-bar/AppBar";
 

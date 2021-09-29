@@ -1,0 +1,9 @@
+.app-bar{
+    &__component {
+        background-color: gray !important;
+        color: black !important;
+    }
+    &__children {
+        padding:20px;
+    }
+}

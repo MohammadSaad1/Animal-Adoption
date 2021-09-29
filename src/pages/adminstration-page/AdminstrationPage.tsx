@@ -1,5 +1,6 @@
 import { Grid } from '@mui/material';
 import { Component } from 'react';
+import { getAnimals } from '../../api/services/AnimalService';
 
 interface AdminstrationPageProps {
     
@@ -14,7 +15,7 @@ class AdminstrationPage extends Component<AdminstrationPageProps, AdminstrationP
         super(props);
         this.state = {};
     }
-    
+
     render() { 
         return ( 
             <Grid>
