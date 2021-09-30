@@ -14,7 +14,7 @@ interface FilterUnit {
 // Can be expanded with more options such as sort, 
 // but don't have the time for that :D 
 export interface Options {
-    filter?: FilterUnit[]
+    filters?: FilterUnit[]
 }
 
 const handleFilters = (endpoint: string, filters: FilterUnit[]) => {
@@ -28,8 +28,8 @@ const handleFilters = (endpoint: string, filters: FilterUnit[]) => {
 export const applyOptions = (endpoint: string, options?: Options) => {
     let modifiedEndpoint = endpoint
 
-    if (options?.filter) {
-        modifiedEndpoint = handleFilters(modifiedEndpoint, options.filter)
+    if (options?.filters) {
+        modifiedEndpoint = handleFilters(modifiedEndpoint, options.filters)
     }
 
     console.log(modifiedEndpoint)

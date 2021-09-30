@@ -24,7 +24,9 @@ class AdoptPage extends Component<AdoptPageProps, AdoptPageState> {
   }
 
   componentDidMount() {
-    getAnimals({filter: [{key: 'status', value:'Adopted', operator: Operator.notEq}]})
+    const filters = [{ key: 'status', value: 'Adopted', operator: Operator.notEq }]
+
+    getAnimals({ filters })
       .then((response) => {
         this.setState({ animals: response.data });
       })
