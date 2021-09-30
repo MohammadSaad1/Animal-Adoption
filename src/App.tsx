@@ -1,12 +1,7 @@
-import React, { useContext, createContext, useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
-  Redirect,
-  useHistory,
-  useLocation,
 } from "react-router-dom";
 import AdoptPage from "./pages/adopt-page/AdoptPage";
 import AdminstrationPage from "./pages/adminstration-page/AdminstrationPage";
