@@ -1,25 +1,19 @@
-.app-bar{
-
+.app-bar {
     //All these could be changed with material uis theme feature
     //and that way avoid !important tag
-    
+
     &__component {
         background-color: #c9c9c9 !important;
         color: black !important;
 
-        &_tab {
-            color: black !important;
-            text-transform: none !important;
-        }
-
-        &-title{
+        &-title {
             font-weight: 700;
             margin-right: 40px;
             padding: 10px 0px;
         }
     }
     &__children {
-        padding:32px;
+        padding: 32px;
         padding-right: 52px;
     }
 }

@@ -1,16 +1,16 @@
 import { Component } from "react";
-import { Button, Grid, Typography, Box } from "@mui/material";
+import { Grid, Typography, Box } from "@mui/material";
 import { Animal } from "../../api/entities/Animal";
 import "./AnimalCard.scss";
-import { partialUpdateAnimal } from "../../api/services/AnimalService";
+import { partialUpdateAnimal } from "../../api/axios-functions/AnimalAxiosFunctions";
+import { getText } from "../../infrastructure/texts/getText";
 
 interface AnimalCardProps {
   animal: Animal;
 }
 
-interface AnimalCardState { }
-
 const defaultAttributes = ['sex', 'status', 'age', 'note']
+
 const specificAttributes: { [key: string]: string[] } = {
   cat: [...defaultAttributes, 'meowsPerDay', 'fluffynessLevel'],
   dog: [...defaultAttributes, 'tailLength', 'goodBoy']
@@ -20,13 +20,13 @@ const handleAdoption = (id: number) => () => {
   partialUpdateAnimal(id, { status: 'Adopted' })
 }
 
-class AnimalCard extends Component<AnimalCardProps, AnimalCardState> {
+class AnimalCard extends Component<AnimalCardProps> {
   render() {
     const { animal } = this.props;
 
     const getMappedAnimalAttributes = () => (
       specificAttributes[animal.type.toLocaleLowerCase()].map((attributeKey) => {
-        const currentAttributes = animal[attributeKey as keyof typeof animal];
+        const currentAttributes = animal[attributeKey as keyof typeof animal]
 
         return (
           <Grid
@@ -38,9 +38,9 @@ class AnimalCard extends Component<AnimalCardProps, AnimalCardState> {
             justifyItems='center'
             alignItems='flex-start'>
             <Typography className='animal-card__bottom-attribute-text' variant='inherit'>
-              {attributeKey.toUpperCase()}
+              {getText(attributeKey).toUpperCase()}
             </Typography>
-            <Typography variant='body1'>{currentAttributes}</Typography>
+            <Typography variant='body1'>{getText(currentAttributes?.toString()?? '')}</Typography>
           </Grid>
         )
       })
@@ -86,7 +86,7 @@ class AnimalCard extends Component<AnimalCardProps, AnimalCardState> {
         <Grid className='animal-card__bottom' container={true} item={true} direction="row" justifySelf='flex-start'>
           {getMappedAnimalAttributes()}
         </Grid>
-        
+
         <button
           className='animal-card-button'
           disabled={animal.status !== 'Booked'}

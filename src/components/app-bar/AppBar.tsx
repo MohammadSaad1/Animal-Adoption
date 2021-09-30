@@ -13,13 +13,7 @@ import "./AppBar.scss";
 
 interface AppBarProps extends RouteComponentProps { }
 
-interface AppBarState { }
-
-class AppBar extends Component<AppBarProps, AppBarState> {
-  constructor(props: AppBarProps) {
-    super(props);
-    this.state = {};
-  }
+class AppBar extends Component<AppBarProps> {
   render() {
     return (
       <Grid className="app-bar">
@@ -30,13 +24,13 @@ class AppBar extends Component<AppBarProps, AppBarState> {
                 IMPEROZOO
               </Typography>
             </Box>
-            <Tabs textColor='inherit' value={this.props.location.pathname}>
+            <Tabs value={this.props.location.pathname}>
               <Tab
                 className='app-bar__component-tab'
                 component={Link}
                 to='/'
                 value="/"
-                label="Adopt an animal"
+                label="Adopt a pet"
               />
               <Tab
                 className='app-bar__component-tab'

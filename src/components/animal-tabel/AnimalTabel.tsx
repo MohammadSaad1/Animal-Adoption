@@ -1,15 +1,11 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import * as React from 'react';
 import { Animal, Status } from '../../api/entities/Animal';
-import { deleteAnimal, partialUpdateAnimal } from '../../api/services/AnimalService';
+import { deleteAnimal, partialUpdateAnimal } from '../../api/axios-functions/AnimalAxiosFunctions';
 import './AnimalTabel.scss'
 
 interface AnimalTabelProps {
     animals: Animal[]
-}
-
-interface AnimalTabelState {
-
 }
 
 const cells = ['Name', 'Type', 'Breed', 'Age', 'Status']
@@ -19,20 +15,22 @@ const handleAdoption = (id: number) => () => {
 }
 
 const handleDeletion = (id: number) => () => {
-    deleteAnimal(id)
+    deleteAnimal(id).then(() => {
+        //reload
+    })
 }
 
 const getButtonCell = (animal: Animal) => (
     <TableCell align='right'>
         <button
-        className='table-container__table-button'
+            className='table-container__table-button'
             onClick={handleAdoption(animal.id)}
             disabled={animal.status !== 'Booked'}>
             Adopt
         </button>
         <button
-                className='table-container__table-button'
-                onClick={handleDeletion(animal.id)}>
+            className='table-container__table-button'
+            onClick={handleDeletion(animal.id)}>
             Delete
         </button>
     </TableCell>
@@ -51,11 +49,7 @@ const getBodyCells = (animal: Animal) => {
 }
 
 
-class AnimalTabel extends React.Component<AnimalTabelProps, AnimalTabelState> {
-    constructor(props: AnimalTabelProps) {
-        super(props);
-        this.state = {};
-    }
+class AnimalTabel extends React.Component<AnimalTabelProps> {
     render() {
         const getHeadCells = () => (
             cells.map(cell => <TableCell className='table-container__table-cell' align='left'>{cell}</TableCell>)

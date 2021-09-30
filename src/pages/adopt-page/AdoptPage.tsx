@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
 import { Component } from "react";
 import { Animal } from "../../api/entities/Animal";
-import { getAnimals } from "../../api/services/AnimalService";
+import { getAnimals } from "../../api/axios-functions/AnimalAxiosFunctions";
 import { Operator } from "../../api/support/applyOptions";
 import AnimalCard from "../../components/animal-card/AnimalCard";
 import CenteredSpinner from "../../components/centered-spinner/CenteredSpinner";
@@ -37,7 +37,7 @@ class AdoptPage extends Component<AdoptPageProps, AdoptPageState> {
 
   render() {
     return (
-      <Grid>
+      <Grid container={true} justifyContent='center' alignContent='center'>
         <Grid className='adopt-page' container={true} direction="row" spacing={4}>
           {this.state.isLoading ? <CenteredSpinner /> : (
             this.state.animals.map((animal) => (

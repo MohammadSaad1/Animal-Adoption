@@ -1,12 +1,10 @@
 import { Grid } from '@mui/material';
 import { Component } from 'react';
 import { Animal } from '../../api/entities/Animal';
-import { getAnimals } from '../../api/services/AnimalService';
+import { getAnimals } from '../../api/axios-functions/AnimalAxiosFunctions';
 import AnimalTabel from '../../components/animal-tabel/AnimalTabel';
 
-interface AdminstrationPageProps {
-
-}
+interface AdminstrationPageProps { }
 
 interface AdminstrationPageState {
     animals: Animal[],
