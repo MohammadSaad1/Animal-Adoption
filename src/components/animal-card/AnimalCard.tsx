@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Button, Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography, Box } from "@mui/material";
 import { Animal } from "../../api/entities/Animal";
 import "./AnimalCard.scss";
 import { partialUpdateAnimal } from "../../api/services/AnimalService";
@@ -37,7 +37,9 @@ class AnimalCard extends Component<AnimalCardProps, AnimalCardState> {
             direction='column'
             justifyItems='center'
             alignItems='flex-start'>
-            <Typography variant='caption'>{attributeKey}</Typography>
+            <Typography className='animal-card__bottom-attribute-text' variant='inherit'>
+              {attributeKey.toUpperCase()}
+            </Typography>
             <Typography variant='body1'>{currentAttributes}</Typography>
           </Grid>
         )
@@ -56,8 +58,14 @@ class AnimalCard extends Component<AnimalCardProps, AnimalCardState> {
         >
           <Grid item={true} xs={8}>
             <img className="animal-card__header-img" src={animal.photo} />
-            <Typography variant='h6'>{animal.name}</Typography>
-            <Typography>{animal.breed}</Typography>
+            <Box className="animal-card__header-text-container">
+              <Typography className="animal-card__header-text" variant='h6'>
+                {animal.name}
+              </Typography>
+            </Box>
+            <Typography className="animal-card__header-text" variant='subtitle2'>
+              {animal.breed}
+            </Typography>
           </Grid>
 
           <Grid
@@ -78,11 +86,14 @@ class AnimalCard extends Component<AnimalCardProps, AnimalCardState> {
         <Grid className='animal-card__bottom' container={true} item={true} direction="row" justifySelf='flex-start'>
           {getMappedAnimalAttributes()}
         </Grid>
-
-        <Button disabled={animal.status !== 'Booked'} variant='outlined' onClick={handleAdoption(animal.id)}>
+        
+        <button
+          className='animal-card-button'
+          disabled={animal.status !== 'Booked'}
+          onClick={handleAdoption(animal.id)}>
           Adopt me
-        </Button>
-      </Grid>
+        </button>
+      </Grid >
     );
   }
 }

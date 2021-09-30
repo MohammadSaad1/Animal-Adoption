@@ -32,6 +32,5 @@ export const applyOptions = (endpoint: string, options?: Options) => {
         modifiedEndpoint = handleFilters(modifiedEndpoint, options.filters)
     }
 
-    console.log(modifiedEndpoint)
     return modifiedEndpoint
 }
