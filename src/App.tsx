@@ -5,8 +5,8 @@ import {
 } from "react-router-dom";
 import AdoptPage from "./pages/adopt-page/AdoptPage";
 import AdminstrationPage from "./pages/adminstration-page/AdminstrationPage";
-import "./App.css";
 import AppBar from "./components/app-bar/AppBar";
+import "./App.scss";
 
 function App() {
   return (

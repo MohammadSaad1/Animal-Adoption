@@ -29,7 +29,14 @@ class AnimalCard extends Component<AnimalCardProps, AnimalCardState> {
         const currentAttributes = animal[attributeKey as keyof typeof animal];
 
         return (
-          <Grid item={true} xs={6}>
+          <Grid
+            className='animal-card__bottom-attribute'
+            item={true}
+            xs={6}
+            container={true}
+            direction='column'
+            justifyItems='center'
+            alignItems='flex-start'>
             <Typography variant='caption'>{attributeKey}</Typography>
             <Typography variant='body1'>{currentAttributes}</Typography>
           </Grid>
@@ -68,7 +75,7 @@ class AnimalCard extends Component<AnimalCardProps, AnimalCardState> {
         </Grid>
 
         {/* Bottom section */}
-        <Grid container={true} item={true} direction="row" justifySelf='flex-start'>
+        <Grid className='animal-card__bottom' container={true} item={true} direction="row" justifySelf='flex-start'>
           {getMappedAnimalAttributes()}
         </Grid>
 

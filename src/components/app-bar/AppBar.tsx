@@ -11,9 +11,9 @@ import { Component } from "react";
 import { Link, RouteComponentProps, withRouter } from "react-router-dom";
 import "./AppBar.scss";
 
-interface AppBarProps extends RouteComponentProps {}
+interface AppBarProps extends RouteComponentProps { }
 
-interface AppBarState {}
+interface AppBarState { }
 
 class AppBar extends Component<AppBarProps, AppBarState> {
   constructor(props: AppBarProps) {
@@ -27,16 +27,17 @@ class AppBar extends Component<AppBarProps, AppBarState> {
           <Toolbar variant="dense">
             <Typography>IMPEROZOO</Typography>
             <Tabs value={this.props.location.pathname}>
-              <Link to="/">
-                <Tab color="white" label="Adopt an animal" value={0} />
-              </Link>
-              <Link to="/adminstration">
-                <Tab
-                  color="white"
-                  label="Adminstration"
-                  value="/adminstration"
-                />
-              </Link>
+              <Tab
+                component={Link}
+                to='/'
+                label="Adopt an animal"
+                value={0} />
+              <Tab
+                component={Link}
+                to="/adminstration"
+                label="Adminstration"
+                value="/adminstration"
+              />
             </Tabs>
           </Toolbar>
         </AppBarComponent>
