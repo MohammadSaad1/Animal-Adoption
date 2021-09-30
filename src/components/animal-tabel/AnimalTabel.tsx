@@ -66,7 +66,7 @@ class AnimalTabel extends React.Component<AnimalTabelProps, AnimalTabelState> {
         )
 
         return (
-            <TableContainer className='table-container' component={Paper}>
+            <TableContainer className='table-container'>
                 <Table>
                     <TableHead className='table-container__table-head' >
                         <TableRow>

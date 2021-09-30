@@ -25,18 +25,25 @@ class AppBar extends Component<AppBarProps, AppBarState> {
       <Grid className="app-bar">
         <AppBarComponent className="app-bar__component" position="relative">
           <Toolbar variant="dense">
-            <Typography>IMPEROZOO</Typography>
-            <Tabs value={this.props.location.pathname}>
+            <Box className='app-bar__component-title'>
+              <Typography variant='inherit'>
+                IMPEROZOO
+              </Typography>
+            </Box>
+            <Tabs textColor='inherit' value={this.props.location.pathname}>
               <Tab
+                className='app-bar__component-tab'
                 component={Link}
                 to='/'
+                value="/"
                 label="Adopt an animal"
-                value={0} />
+              />
               <Tab
+                className='app-bar__component-tab'
                 component={Link}
-                to="/adminstration"
                 label="Adminstration"
                 value="/adminstration"
+                to="/adminstration"
               />
             </Tabs>
           </Toolbar>
