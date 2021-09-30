@@ -1,0 +1,22 @@
+.table-container {
+    &__table {
+        &-head {
+            background: black;
+        }
+
+        &-cell {
+            color: white !important;
+            font-weight: 600 !important;
+        }
+
+        &-button {
+            padding: 5px 15px;
+            margin: 0px 5px;
+        }
+
+        &-button:disabled {
+            background: none;
+            border: 1px solid gainsboro ;
+        }
+    }
+}

@@ -2,6 +2,7 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 import * as React from 'react';
 import { Animal, Status } from '../../api/entities/Animal';
 import { deleteAnimal, partialUpdateAnimal } from '../../api/services/AnimalService';
+import './AnimalTabel.scss'
 
 interface AnimalTabelProps {
     animals: Animal[]
@@ -11,7 +12,7 @@ interface AnimalTabelState {
 
 }
 
-const cells = ['name', 'type', 'breed', 'age', 'status']
+const cells = ['Name', 'Type', 'Breed', 'Age', 'Status']
 
 const handleAdoption = (id: number) => () => {
     partialUpdateAnimal(id, { status: 'Adopted' })
@@ -24,11 +25,14 @@ const handleDeletion = (id: number) => () => {
 const getButtonCell = (animal: Animal) => (
     <TableCell align='right'>
         <button
+        className='table-container__table-button'
             onClick={handleAdoption(animal.id)}
             disabled={animal.status !== 'Booked'}>
             Adopt
         </button>
-        <button onClick={handleDeletion(animal.id)}>
+        <button
+                className='table-container__table-button'
+                onClick={handleDeletion(animal.id)}>
             Delete
         </button>
     </TableCell>
@@ -37,7 +41,7 @@ const getButtonCell = (animal: Animal) => (
 const getBodyCells = (animal: Animal) => {
     const bodyCells = cells.map(cell => (
         <TableCell align='left'>
-            {animal[cell as keyof typeof animal]}
+            {animal[cell.toLocaleLowerCase() as keyof typeof animal]}
         </TableCell>
     ))
 
@@ -54,7 +58,7 @@ class AnimalTabel extends React.Component<AnimalTabelProps, AnimalTabelState> {
     }
     render() {
         const getHeadCells = () => (
-            cells.map(cell => <TableCell align='left'>{cell}</TableCell>)
+            cells.map(cell => <TableCell className='table-container__table-cell' align='left'>{cell}</TableCell>)
         )
 
         const getBodyRows = () => (
@@ -64,7 +68,7 @@ class AnimalTabel extends React.Component<AnimalTabelProps, AnimalTabelState> {
         return (
             <TableContainer className='table-container' component={Paper}>
                 <Table>
-                    <TableHead>
+                    <TableHead className='table-container__table-head' >
                         <TableRow>
                             {getHeadCells()}
                             <TableCell align='right' />
