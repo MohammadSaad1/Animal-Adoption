@@ -2,6 +2,7 @@ import { Grid } from "@mui/material";
 import { Component } from "react";
 import { Animal } from "../../api/entities/Animal";
 import { getAnimals } from "../../api/services/AnimalService";
+import { Operator } from "../../api/support/applyOptions";
 import AnimalCard from "../../components/animal-card/AnimalCard";
 import CenteredSpinner from "../../components/centered-spinner/CenteredSpinner";
 import './AdoptPage.scss'
@@ -23,7 +24,7 @@ class AdoptPage extends Component<AdoptPageProps, AdoptPageState> {
   }
 
   componentDidMount() {
-    getAnimals()
+    getAnimals({filter: [{key: 'status', value:'Adopted', operator: Operator.notEq}]})
       .then((response) => {
         this.setState({ animals: response.data });
       })
