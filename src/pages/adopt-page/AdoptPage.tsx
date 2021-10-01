@@ -14,6 +14,8 @@ interface AdoptPageState {
   isLoading: boolean
 }
 
+const filters = [{ key: 'status', value: 'Adopted', operator: Operator.notEq }]
+
 class AdoptPage extends Component<AdoptPageProps, AdoptPageState> {
   constructor(props: AdoptPageProps) {
     super(props);
@@ -24,8 +26,6 @@ class AdoptPage extends Component<AdoptPageProps, AdoptPageState> {
   }
 
   componentDidMount() {
-    const filters = [{ key: 'status', value: 'Adopted', operator: Operator.notEq }]
-
     getAnimals({ filters })
       .then((response) => {
         this.setState({ animals: response.data });
@@ -36,13 +36,15 @@ class AdoptPage extends Component<AdoptPageProps, AdoptPageState> {
   }
 
   render() {
+    const refetchAnimals = () => getAnimals({ filters }).then(response => this.setState({ animals: response.data }))
+
     return (
       <Grid container={true} justifyContent='center' alignContent='center'>
         <Grid className='adopt-page' container={true} direction="row" spacing={4}>
           {this.state.isLoading ? <CenteredSpinner /> : (
             this.state.animals.map((animal) => (
               <Grid item={true} xs={12} sm={6} md={4}>
-                <AnimalCard animal={animal} />
+                <AnimalCard animal={animal} refetch={refetchAnimals} />
               </Grid>
             ))
           )}

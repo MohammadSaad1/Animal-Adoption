@@ -1,53 +1,15 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import * as React from 'react';
 import { Animal, Status } from '../../api/entities/Animal';
-import { deleteAnimal, partialUpdateAnimal } from '../../api/axios-functions/AnimalAxiosFunctions';
+import { deleteAnimal, getAnimals, partialUpdateAnimal } from '../../api/axios-functions/AnimalAxiosFunctions';
 import './AnimalTabel.scss'
 
 interface AnimalTabelProps {
     animals: Animal[]
+    refetch: () => void
 }
 
 const cells = ['Name', 'Type', 'Breed', 'Age', 'Status']
-
-const handleAdoption = (id: number) => () => {
-    partialUpdateAnimal(id, { status: 'Adopted' })
-}
-
-const handleDeletion = (id: number) => () => {
-    deleteAnimal(id).then(() => {
-        //reload
-    })
-}
-
-const getButtonCell = (animal: Animal) => (
-    <TableCell align='right'>
-        <button
-            className='table-container__table-button'
-            onClick={handleAdoption(animal.id)}
-            disabled={animal.status !== 'Booked'}>
-            Adopt
-        </button>
-        <button
-            className='table-container__table-button'
-            onClick={handleDeletion(animal.id)}>
-            Delete
-        </button>
-    </TableCell>
-)
-
-const getBodyCells = (animal: Animal) => {
-    const bodyCells = cells.map(cell => (
-        <TableCell align='left'>
-            {animal[cell.toLocaleLowerCase() as keyof typeof animal]}
-        </TableCell>
-    ))
-
-    bodyCells.push(getButtonCell(animal))
-
-    return bodyCells
-}
-
 
 class AnimalTabel extends React.Component<AnimalTabelProps> {
     render() {
@@ -58,6 +20,42 @@ class AnimalTabel extends React.Component<AnimalTabelProps> {
         const getBodyRows = () => (
             this.props.animals.map(animal => <TableRow> {getBodyCells(animal)} </TableRow>)
         )
+
+        const handleAdoption = (id: number) => () => {
+            partialUpdateAnimal(id, { status: 'Adopted' }).then(() => this.props.refetch())
+        }
+
+        const handleDeletion = (id: number) => () => {
+            deleteAnimal(id).then(() => this.props.refetch())
+        }
+
+        const getButtonCell = (animal: Animal) => (
+            <TableCell align='right'>
+                <button
+                    className='table-container__table-button'
+                    onClick={handleAdoption(animal.id)}
+                    disabled={animal.status !== 'Booked'}>
+                    Adopt
+                </button>
+                <button
+                    className='table-container__table-button'
+                    onClick={handleDeletion(animal.id)}>
+                    Delete
+                </button>
+            </TableCell>
+        )
+
+        const getBodyCells = (animal: Animal) => {
+            const bodyCells = cells.map(cell => (
+                <TableCell align='left'>
+                    {animal[cell.toLocaleLowerCase() as keyof typeof animal]}
+                </TableCell>
+            ))
+
+            bodyCells.push(getButtonCell(animal))
+
+            return bodyCells
+        }
 
         return (
             <TableContainer className='table-container'>
@@ -77,4 +75,4 @@ class AnimalTabel extends React.Component<AnimalTabelProps> {
     }
 }
 
-export default AnimalTabel;
+export default AnimalTabel

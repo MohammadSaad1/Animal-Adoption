@@ -31,9 +31,11 @@ class AdminstrationPage extends Component<AdminstrationPageProps, AdminstrationP
     }
 
     render() {
+        const refetchAnimals = () => getAnimals().then(response => this.setState({ animals: response.data }))
+
         return (
             <Grid>
-                <AnimalTabel animals={this.state.animals} />
+                <AnimalTabel animals={this.state.animals} refetch={refetchAnimals} />
             </Grid>
         );
     }

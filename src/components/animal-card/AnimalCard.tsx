@@ -7,6 +7,7 @@ import { getText } from "../../infrastructure/texts/getText";
 
 interface AnimalCardProps {
   animal: Animal;
+  refetch: () => void
 }
 
 const defaultAttributes = ['sex', 'status', 'age', 'note']
@@ -16,13 +17,13 @@ const specificAttributes: { [key: string]: string[] } = {
   dog: [...defaultAttributes, 'tailLength', 'goodBoy']
 }
 
-const handleAdoption = (id: number) => () => {
-  partialUpdateAnimal(id, { status: 'Adopted' })
-}
-
 class AnimalCard extends Component<AnimalCardProps> {
   render() {
-    const { animal } = this.props;
+    const { animal, refetch } = this.props;
+
+    const handleAdoption = (id: number) => () => {
+      partialUpdateAnimal(id, { status: 'Adopted' }).then(() => refetch())
+    }
 
     const getMappedAnimalAttributes = () => (
       specificAttributes[animal.type.toLocaleLowerCase()].map((attributeKey) => {
@@ -40,7 +41,7 @@ class AnimalCard extends Component<AnimalCardProps> {
             <Typography className='animal-card__bottom-attribute-text' variant='inherit'>
               {getText(attributeKey).toUpperCase()}
             </Typography>
-            <Typography variant='body1'>{getText(currentAttributes?.toString()?? '')}</Typography>
+            <Typography variant='body1'>{getText(currentAttributes?.toString() ?? '')}</Typography>
           </Grid>
         )
       })
